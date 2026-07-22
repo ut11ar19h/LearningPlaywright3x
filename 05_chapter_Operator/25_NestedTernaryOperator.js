@@ -1,0 +1,5 @@
+//Multiple conditions can be checked using nested ternary operators. However, it is important to note that using too many nested ternary operators can make the code less readable and harder to maintain. It is generally recommended to use if-else statements for complex conditions.
+let score = 85;
+let catagory = score >= 90 ? "Excellent Student" : (score >= 80 ? "Good Student" : "Average Student");
+console.log(`The Student catagory is -${catagory}`);
+// Explain this code: The code uses nested ternary operators to categorize a student's performance based on their score. If the score is 90 or above, the student is categorized as "Excellent Student". If the score is between 80 and 89, the student is categorized as "Good Student". If the score is below 80, the student is categorized as "Average Student". The result is then printed to the console using a template literal.

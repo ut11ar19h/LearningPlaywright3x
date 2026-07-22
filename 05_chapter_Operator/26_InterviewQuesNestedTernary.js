@@ -1,0 +1,4 @@
+let statuscode = 400;
+let catagory = statuscode <300 ? "sucess" : statuscode <400 ? "Redirect" : statuscode < 500 ? "Client Error" : "Server Error";
+console.log(`The Status code is- ${statuscode} and the catagory is- ${catagory}`);
+//Explain this code: The code uses nested ternary operators to categorize an HTTP status code into different categories. If the status code is less than 300, it is categorized as "success". If the status code is between 300 and 399, it is categorized as "Redirect". If the status code is between 400 and 499, it is categorized as "Client Error". If the status code is 500 or above, it is categorized as "Server Error". The result is then printed to the console using a template literal.
