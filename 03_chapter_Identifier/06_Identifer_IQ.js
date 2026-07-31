@@ -12,7 +12,7 @@ let _temp2 = "underscore then digit";
 let $var123 = "dollar then digits";
 let a1_b2 = "mixed letters digits underscore";
 
-//let 1stPlace = "invalid";
+// let 1stPlace = "invalid"; // identifiers cannot start with a digit.
 //let 2ndItem = "invalid"; // SyntaxError: Invalid or unexpected token
 
 // Keyword
@@ -30,7 +30,7 @@ let café = "Unicode letter é";
 let 变量 = "Chinese characters";
 let \u0041 = "Unicode escape for A";
 let \u005f = "Unicode escape for _";
-
+let उत्कर्ष = "This is a valid identifier in Hindi";
 
 // let my-name = "invalid";
 // let my name = "invalid";      // SyntaxError: Unexpected identifier

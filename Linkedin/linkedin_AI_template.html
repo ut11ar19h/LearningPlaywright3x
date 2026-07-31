@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI for QA Engineers - Visual Template</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #0f0f1a;
+            padding: 20px;
+        }
+        .card {
+            max-width: 800px;
+            width: 100%;
+            background: linear-gradient(145deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            border-radius: 24px;
+            padding: 48px 40px;
+            color: #e0e0e0;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.06);
+            position: relative;
+            overflow: hidden;
+        }
+        .card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -30%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(79,172,254,0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        .card::after {
+            content: '';
+            position: absolute;
+            bottom: -20%;
+            left: -20%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(0,242,195,0.06) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        .badge {
+            display: inline-block;
+            background: rgba(79,172,254,0.15);
+            color: #4facfe;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 6px 16px;
+            border-radius: 20px;
+            border: 1px solid rgba(79,172,254,0.2);
+            margin-bottom: 16px;
+        }
+        h1 {
+            font-size: 32px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 8px;
+            line-height: 1.2;
+        }
+        .subtitle {
+            font-size: 15px;
+            color: #8899aa;
+            margin-bottom: 36px;
+            line-height: 1.5;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 28px;
+        }
+        .box {
+            background: rgba(255,255,255,0.04);
+            border-radius: 16px;
+            padding: 22px 20px;
+            border: 1px solid rgba(255,255,255,0.06);
+            transition: all 0.2s;
+        }
+        .box:hover {
+            background: rgba(255,255,255,0.07);
+            border-color: rgba(79,172,254,0.2);
+        }
+        .box-icon {
+            font-size: 20px;
+            margin-bottom: 10px;
+            display: block;
+        }
+        .box h3 {
+            font-size: 14px;
+            font-weight: 700;
+            color: #4facfe;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+        .box p {
+            font-size: 13px;
+            color: #b0b8c8;
+            line-height: 1.6;
+        }
+        .box.highlight {
+            background: rgba(0,242,195,0.06);
+            border-color: rgba(0,242,195,0.15);
+            grid-column: 1 / -1;
+        }
+        .box.highlight h3 { color: #00f2c3; }
+        .guardrails {
+            display: flex;
+            gap: 12px;
+            margin-top: 6px;
+        }
+        .guardrail {
+            flex: 1;
+            background: rgba(255,255,255,0.04);
+            border-radius: 10px;
+            padding: 14px 12px;
+            border: 1px solid rgba(255,255,255,0.06);
+            text-align: center;
+        }
+        .guardrail strong {
+            display: block;
+            font-size: 11px;
+            color: #ffb347;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+        }
+        .guardrail span {
+            font-size: 11.5px;
+            color: #b0b8c8;
+            line-height: 1.4;
+        }
+        .footer {
+            margin-top: 28px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.06);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+        }
+        .tag {
+            color: #4facfe;
+            font-weight: 600;
+        }
+        .hashtags {
+            color: #667788;
+            font-size: 12px;
+        }
+        .divider {
+            height: 2px;
+            background: linear-gradient(90deg, rgba(79,172,254,0.3), rgba(0,242,195,0.3));
+            margin: 24px 0;
+            border-radius: 2px;
+        }
+        @media (max-width: 600px) {
+            .card { padding: 28px 20px; }
+            h1 { font-size: 24px; }
+            .grid { grid-template-columns: 1fr; }
+            .guardrails { flex-direction: column; }
+            .footer { flex-direction: column; gap: 8px; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="badge">AI · QA · Prompt Engineering</div>
+        <h1>AI for QA Engineers:<br>Beyond Automation</h1>
+        <p class="subtitle">How prompt engineering and AI literacy are reshaping the QA landscape — and why structured prompting is the new superpower.</p>
+
+        <div class="grid">
+            <div class="box">
+                <span class="box-icon">🎯</span>
+                <h3>Prompt Engineering</h3>
+                <p>Crafting precise instructions for LLMs. The difference between production-ready code and hallucinations lies in how you frame the ask.</p>
+            </div>
+            <div class="box">
+                <span class="box-icon">🧩</span>
+                <h3>RICEPOT Framework</h3>
+                <p><strong>R</strong>ole · <strong>I</strong>nstructions · <strong>C</strong>ontext · <strong>E</strong>xample · <strong>P</strong>arameters · <strong>O</strong>utput · <strong>T</strong>one</p>
+                <p style="margin-top:4px;">Constrains scope and format upfront — generates Page Objects, TestNG scripts, and Maven configs with minimal drift.</p>
+            </div>
+        </div>
+
+        <div class="box highlight">
+            <span class="box-icon">🛡️</span>
+            <h3>Preventing Hallucinations &amp; Inconsistencies</h3>
+            <div class="guardrails">
+                <div class="guardrail">
+                    <strong>Context Anchoring</strong>
+                    <span>Provide target app, tech stack, and naming conventions in the prompt itself</span>
+                </div>
+                <div class="guardrail">
+                    <strong>Output Constraints</strong>
+                    <span>Exact file structure, locator strategy, coding standards (XPath only, no Thread.sleep)</span>
+                </div>
+                <div class="guardrail">
+                    <strong>Human Review Gate</strong>
+                    <span>AI generates — QA validates. The model is a force multiplier, not a decision-maker</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div style="display:flex; align-items:center; gap:16px; flex-wrap:wrap;">
+            <div style="flex:1; min-width:200px;">
+                <p style="font-size:13px; color:#8899aa; line-height:1.6;">
+                    <strong style="color:#00f2c3;">⚡ The Productivity Multiplier Effect</strong><br>
+                    Structured prompting doesn't replace test automation skills — it amplifies them. Framework scaffolding that took hours is generated in seconds. The saved time goes into test design, edge cases, and coverage strategy.
+                </p>
+            </div>
+            <div style="background:rgba(255,255,255,0.04); border-radius:12px; padding:16px 20px; border:1px solid rgba(255,255,255,0.06); text-align:center; min-width:160px;">
+                <div style="font-size:28px; font-weight:700; color:#4facfe; line-height:1;">10x</div>
+                <div style="font-size:11px; color:#667788; text-transform:uppercase; letter-spacing:1px;">Framework Speed</div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <span class="tag">Grateful to @Pramod Dutta for the teachings on AI Engineering &amp; prompt engineering</span>
+            <span class="hashtags">#AI #SoftwareTesting #PromptEngineering #QA #TestAutomation</span>
+        </div>
+    </div>
+</body>
+</html>

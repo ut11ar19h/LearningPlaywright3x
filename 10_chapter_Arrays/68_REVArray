@@ -1,0 +1,8 @@
+// Constructing a reverse array....
+let ut_1055 = [1,2,3,4,5,6];
+let j=ut_1055.length;
+let Rev_Ar= [];
+for(i=0;i<j;i++){
+  Rev_Ar.push(ut_1055.pop())
+}
+console.log(Rev_Ar);
