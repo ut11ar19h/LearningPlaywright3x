@@ -13,5 +13,4 @@
  *  Date : 14-Feb-2026
  **/
 
-var g = 10; //for single line comment  ctr + /
-// shortcut for multiline comment-Shift + Alt + A
+var g = 10; // cmd + /, ctr + /

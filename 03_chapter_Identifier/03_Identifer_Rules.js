@@ -11,9 +11,8 @@ var _ = 10;
 
 var Name = "pramod";
 var name = "Amit";
-//Java script is case sensitive language so Name and name are different variables.
 
-// var pramod dutta = "hello"; Not possible because space is not allowed in variable name
+// var pramod dutta = "hello";
 var pramod_dutta = "hello";
 var pramod$dutta = "hello";
 var pramodu1232 = "hello";

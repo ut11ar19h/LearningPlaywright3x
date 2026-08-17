@@ -3,7 +3,6 @@ var name = "Pramod";
 var firstName = "Pramod";
 var This_is_a_very_long_name_variable = "Pramod";
 var lastName = "Dutta"; // CamelCase
-//camelCase is a naming convention where the first letter of the first word is lowercase, and the first letter of each subsequent word is capitalized. It is commonly used for variable and function names in JavaScript.
 
 // Naming Conventions (Cases)
 // ============================================

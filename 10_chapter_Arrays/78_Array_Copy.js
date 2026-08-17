@@ -20,4 +20,3 @@ console.log(cop_y);
 cop_y.push("Deep copy");
 console.log(arr);
 
-
