@@ -4,9 +4,39 @@ A learning repository tracking JavaScript fundamentals from first principles, al
 
 ---
 
+## Getting Started
+
+**Requirements:** Node.js 18+ (check with `node -v`). No dependencies are needed for the plain `.js` lessons.
+
+```bash
+# Clone and run any lesson directly
+git clone <repo-url> && cd LearnPlaywright3x
+node 01_chapter_Javascript/01_HelloWorld.js
+```
+
+Most chapters are dependency-free JavaScript. Run any lesson with:
+
+```bash
+node path/to/file.js
+```
+
+The one exception is `18_Async_Await/149_Example.spec.ts`, a Playwright test. It needs the Playwright toolchain:
+
+```bash
+npm init playwright@latest   # once per machine/project
+npx playwright install       # downloads browsers
+npx playwright test 18_Async_Await/149_Example.spec.ts
+```
+
+**How to use this repo:** read a chapter's Concept section → open its lesson files → predict each output before running → verify with `node` → close gaps with the linked IQ notes and MCQs.
+
+---
+
 ## Table of Contents
 
+- [Getting Started](#getting-started)
 - [Repo Structure](#repo-structure)
+- [Repeatable “Go Go Go” Command](#repeatable-go-go-go-command)
 - [00 — GenAI / RICE Prompting](#00--genai--rice-prompting)
 - [01 — Hello World](#01--hello-world)
 - [02 — `let` & Scope](#02--let--scope)
@@ -41,6 +71,7 @@ A learning repository tracking JavaScript fundamentals from first principles, al
   - [11.7 — Hoisting](#117--hoisting)
   - [11.8 — Temporal Dead Zone (TDZ)](#118--temporal-dead-zone-tdz)
   - [11.9 — Hoisting Trap: Declaration vs Expression](#119--hoisting-trap-declaration-vs-expression)
+  - [11.10 — Functions in Real Test Code](#1110--functions-in-real-test-code)
 - [12 — Scope & Closures](#12--scope--closures)
   - [12.1 — Scope Chain](#121--scope-chain)
   - [12.2 — Closures](#122--closures)
@@ -66,6 +97,22 @@ A learning repository tracking JavaScript fundamentals from first principles, al
   - [17.2 — Chaining Promises](#172--chaining-promises)
   - [17.3 — all / allSettled / race](#173--all--allsettled--race)
 - [18 — Async / Await](#18--async--await)
+- [19 — Export / Import (ES Modules)](#19--export--import-es-modules)
+- [20 — Classes & OOP](#20--classes--oop)
+- [21 — OOP Encapsulation](#21--oop-encapsulation)
+- [22 — OOP Inheritance](#22--oop-inheritance)
+  - [22.1 — Single Inheritance](#221--single-inheritance)
+  - [22.2 — Multiple Inheritance & Mixins](#222--multiple-inheritance--mixins)
+  - [22.3 — Multi-Level Inheritance](#223--multi-level-inheritance)
+  - [22.4 — Hierarchical Inheritance](#224--hierarchical-inheritance)
+- [23 — OOP Polymorphism](#23--oop-polymorphism)
+- [24 — OOP Interview Practice](#24--oop-interview-practice)
+- [25 — TypeScript](#25--typescript)
+- [26 — TypeScript Abstractions](#26--typescript-abstractions)
+- [27 — TypeScript Enums](#27--typescript-enums)
+- [28 — TypeScript Generics](#28--typescript-generics)
+- [29 — TypeScript Access Modifiers](#29--typescript-access-modifiers)
+- [30 — TypeScript Abstract Classes](#30--typescript-abstract-classes)
 - [MCQ — Practice Questions](#mcq--practice-questions)
 - [IQ_Notes — Reference Library](#iq_notes--reference-library)
 
@@ -75,6 +122,9 @@ A learning repository tracking JavaScript fundamentals from first principles, al
 
 ```
 LearnPlaywright3x/
+├── .commandcode/
+│   └── commands/
+│       └── go-go-go.md                      # repeatable README, verify, commit, and push workflow
 ├── 00_chaptet_GENAI/
 │   └── RICEPOT_SeleniumFramworkCreation.md   # RICE-style prompt for Selenium framework gen
 ├── 01_chapter_Javascript/
@@ -245,7 +295,85 @@ LearnPlaywright3x/
 │   └── 145.IQ.js                            # all/allSettled quiz questions
 ├── 18_Async_Await/
 │   ├── 146.js                               # .then chain vs async/await shape
-│   └── 147_BetterWay.js                     # async/await login flow (the "better way")
+│   ├── 147_BetterWay.js                     # async/await login and API request flows
+│   ├── 148_AA.js                            # async return values and awaiting resolved promises
+│   ├── 149_Example.spec.ts                  # await inside a Playwright test
+│   ├── 150.js                               # try/catch/finally error handling
+│   ├── 151_Seq_Eexecution.js                # dependent API calls run sequentially
+│   ├── 152_Parall_Execution.js              # independent API calls with Promise.all
+│   ├── 153_API_Flaky.js                     # bounded retry-until-success pattern
+│   └── 154_IQ.js                            # async/await interview examples and execution order
+├── 19_Export_Import/
+│   ├── package.json                          # scopes this chapter's .js files as ES modules
+│   ├── utils.js                              # named exports: BASE_URL, formatTestName, formatTestName2
+│   ├── testutil.js                           # named exports: BASE_URL, formatUpperCaseString
+│   ├── 155.js                                # importing named exports from testutil.js
+│   ├── 156_test.js                           # importing from two modules with alias renaming
+│   ├── 157.js                                # default import from logs/logger.js
+│   └── logs/
+│       └── logger.js                         # default export (log) + named export (logBetter)
+├── 20_Class_Object_OOPs/
+│   ├── 01_Class_Object/                      # classes, constructors, objects, and automation examples
+│   ├── 02_Public_Private/                    # public and private class fields
+│   └── 03_Static_JS/                        # static fields, methods, and instance fields
+├── 21_OOPs_Ecapsulation/
+│   ├── 169.js                                # private fields with getter and setter methods
+│   ├── 170_Car.js                            # encapsulated car engine example
+│   ├── 171_Ecap_Bnak.js                      # protected balance update example
+│   └── 172_IQ.js–175_IQ.js                  # automation and interview practice
+├── 22_OOPs_Inheritance/
+│   ├── 01_Single_Inheritance/
+│   │   ├── 176_SI.js–179_IQ.js               # extends, super, overriding, setup, and teardown
+│   │   └── 180.IQ.js–182.js                  # polymorphic test, page, and report examples
+│   ├── 02_Multiple_Inheritance/
+│   │   ├── 178.js                            # why `extends F1, F2` is a syntax error in JS
+│   │   └── 179.js                            # mixins — compose logging + screenshot abilities
+│   ├── 03_Multi_Level_Inheritance/
+│   │   └── 180.js                            # BasePage → AuthPage → AdminPage chain
+│   └── 04_Hierarchial_Inheritance/
+│       └── 181.js                            # one Father, three sibling Sons
+├── 23_OOPs_Polymorphism/
+│   └── 182_Method_Overriding.js              # child setup() overrides the parent at runtime
+├── 24_OOPs_Interview/
+│   ├── EX1.js–EX3.js                         # constructors, default params, per-instance state
+│   ├── EX4.js                                # `return this` → method chaining
+│   ├── EX5.js                                # three-level super chain → "C>B>A"
+│   ├── 195_IQ.ts                             # typed helpers — string, boolean, void returns
+│   └── 196.ts                                # number[] param + typed filter callback
+├── 25_Typescript/
+│   ├── 183.js                                # the untyped JS starting point
+│   ├── 184.ts / 184.js                       # typed source vs its compiled output
+│   ├── 185.ts–188.ts                         # void returns, primitives, arrays, any vs unknown
+│   └── 190.ts–194.ts                         # arrows, object shapes, void and never
+├── 26_OOPs_TS_Abstractions/
+│   ├── Interface/
+│   │   ├── 197_Interface.ts                  # interface as a reusable object shape
+│   │   ├── 198_Readyonly.ts                  # readonly properties cannot be reassigned
+│   │   ├── 199_Interface_PageObject.ts       # interface inheritance for page objects
+│   │   ├── 200_API_Response.ts               # optional properties on API responses
+│   │   └── 201_Method_In.ts                  # methods declared on an interface
+│   ├── 202_Interface_Hook.ts                 # callable interface for before/after hooks
+│   ├── 203_REAL_Config.ts                    # optional timeout and retries on test config
+│   ├── 204_Class_Interface.ts                # class implements an interface contract
+│   ├── 205_Interface_Misc.ts                 # index signature — string-to-string map
+│   └── 206.js                                # parameterized constructor recap
+├── 27_Typescript_ENUM/
+│   ├── 205_ENUM.ts                           # TestStatus string enum
+│   ├── 206_ENUM.ts                           # SeverityLevels string enum
+│   ├── 207_REAL_Enum.ts                      # Environment enum, one member per base URL
+│   ├── 208_REAL_Browser_PW.ts                # enum as a parameter type driving a switch
+│   └── 209_API_REAL.ts                       # HTTPMethod enum passed to sendRequest
+├── 28_Typescript_Generic/
+│   ├── 210_Generic.ts                        # generic function <T> over number/string/boolean
+│   ├── 211_Generic_Class.ts                  # generic class TestDataStorage<T>
+│   └── 212_API_Response.ts                   # generic response wrapper { statusCode, data: T }
+├── 29_Typescript_PRIVATE_PUBLIC_PROTECTED/
+│   ├── 213_PPP.ts                            # public vs private vs protected on an APIClient
+│   ├── 214_PageObjectModel.ts                # protected navigate() reused by LoginPage
+│   └── 215_Redaonly.ts                       # private readonly Playwright config
+├── 30_Typescript_Abstract_Class/
+│   └── 216_Abstract.ts                       # abstract BaseTest lifecycle + concrete UITest
+├── tsconfig.json                             # strict TS config for the .ts lessons
 ├── MCQ/
 │   └── Array_MCQ.md                         # array practice multiple-choice questions
 └── IQ_Notes/
@@ -256,6 +384,18 @@ LearnPlaywright3x/
     ├── 03_commands_mac.md                     # VS Code shortcuts — macOS
     └── 03_commands_win.md                     # VS Code shortcuts — Windows
 ```
+
+---
+
+## Repeatable “Go Go Go” Command
+
+Command Code users can run `/go-go-go` whenever they want the agent to inspect the current changes, bring this parent README up to date, verify the affected code, create a Conventional Commit on `main`, and push only `main`.
+
+```text
+/go-go-go
+```
+
+The reusable prompt lives at [`.commandcode/commands/go-go-go.md`](.commandcode/commands/go-go-go.md). It stages only intentional files, safely brings feature-branch work into `main`, blocks the push when verification fails or a possible secret is found, pushes only with `git push origin main`, and never force-pushes.
 
 ---
 
@@ -354,7 +494,7 @@ let 变量 = "Chinese characters";
 var g = 10; // cmd + /, ctrl + /
 ```
 
-Full identifier rules + naming convention tables live in [`IQ_Notes/01_Identifier_Rules.md`](IQ_Notes/01_Identifier_Rules.md).
+Full identifier rules + naming convention tables live in [`IQ_Notes/01_Identifier_Rules.md`](IQ_Notes/01_Identifier_Rules.md). The complete reserved-keyword list is in [`IQ_Notes/02_Keyword_Notes.md`](IQ_Notes/02_Keyword_Notes.md).
 
 ---
 
@@ -1182,6 +1322,8 @@ console.log(p, q);                 // 2 1
 | Swap | `[a, b] = [b, a]` |
 | Index + value in a loop | `for (let [i, v] of arr.entries())` |
 
+**Practice:** test yourself with [`MCQ/Array_MCQ.md`](MCQ/Array_MCQ.md) before moving to functions.
+
 ---
 
 ### 11 — Functions
@@ -1599,6 +1741,8 @@ console.log(a);       // "temp"  — same variable, function-scoped
 
 Full walkthrough with class hoisting, interview traps, and phase diagrams: [`11_chapter_Funtions/102_Hoisting_TDZ.md`](11_chapter_Funtions/102_Hoisting_TDZ.md).
 
+**Reference:** how source code becomes machine code — [`IQ_Notes/Source_Code_ByteCODE_Binary_IQ.md`](IQ_Notes/Source_Code_ByteCODE_Binary_IQ.md).
+
 ---
 
 #### 11.8 — Temporal Dead Zone (TDZ)
@@ -1703,7 +1847,7 @@ console.log(sayHi("Bob"));      // "Hi, Bob!"  ✅ after the line
 
 ---
 
-### Functions in Real Test Code
+#### 11.10 — Functions in Real Test Code
 
 **Concept:** The same validation logic written as a declaration, an expression, and an arrow — proving the three forms are interchangeable for ordinary test helpers.
 
@@ -2591,6 +2735,20 @@ Promise.allSettled([
 - **Q: What does `async` guarantee?** A: The function always returns a promise, even if it returns a plain value.
 - **Q: What does `await` require?** A: It can only be used inside an `async` function, and it waits for the promise on its right.
 - **Q: How do I handle errors?** A: Wrap the awaited calls in `try/catch`, or call the async function and attach `.catch` to its returned promise.
+- **Q: How do I await an API-style promise in a regular Node.js script?** A: Put the `await` inside an `async` function, call that function, and then use the resolved response. This avoids relying on top-level `await` in a CommonJS script.
+- **Q: Sequential or parallel?** A: Await calls one by one when a later step depends on an earlier result. Start independent calls together with `Promise.all` to avoid waiting for each timer or network request in turn.
+- **Q: How should a retry loop stop?** A: Return immediately after the first successful attempt, and throw only after the configured maximum number of failures.
+- **Q: Why does `A, B, D, C` print in that order?** A: The synchronous code prints `A`, enters the async function and prints `B`, then `await` yields. The caller continues with `D`, and the promise continuation prints `C` in a microtask.
+
+| Lesson | Focus |
+|--------|-------|
+| [`148_AA.js`](18_Async_Await/148_AA.js) | Calling an async function returns a promise; `await` unwraps resolved values. |
+| [`149_Example.spec.ts`](18_Async_Await/149_Example.spec.ts) | Playwright actions and assertions awaited inside an async test. |
+| [`150.js`](18_Async_Await/150.js) | Rejected promises handled with `try`, `catch`, and `finally`. |
+| [`151_Seq_Eexecution.js`](18_Async_Await/151_Seq_Eexecution.js) | Three dependent one-second calls take about three seconds sequentially. |
+| [`152_Parall_Execution.js`](18_Async_Await/152_Parall_Execution.js) | Three independent one-second calls complete in about one second with `Promise.all`. |
+| [`153_API_Flaky.js`](18_Async_Await/153_API_Flaky.js) | Bounded retry examples cover eventual success and exhausting every attempt. |
+| [`154_IQ.js`](18_Async_Await/154_IQ.js) | Interview examples covering resolved values, rejection handling, API responses, and microtask order. |
 
 ```js
 async function runLoginFlow() {
@@ -2610,6 +2768,52 @@ async function runLoginFlow() {
 runLoginFlow();
 ```
 
+The second example models an API request that resolves with an HTTP status. The awaited response stays inside an `async` function, so the file runs directly with Node.js.
+
+```js
+function apiRequest() {
+    return new Promise(function (resolve) {
+        resolve({ status: 200 });
+    });
+}
+
+async function runApiRequest() {
+    let response = await apiRequest();
+    console.log("API status:", response.status);
+}
+
+runApiRequest();
+```
+
+Sequential execution waits for each result before starting the next call. Parallel execution starts independent work together and awaits the combined result.
+
+```js
+let login = await apiCall("Login");
+let dashboard = await apiCall("Dashboard"); // starts after Login finishes
+
+let [auth, user] = await Promise.all([
+    apiCall("Auth Service"),
+    apiCall("User Service")
+]); // both calls run together
+```
+
+Run the plain JavaScript lessons directly with Node.js:
+
+```bash
+node 18_Async_Await/148_AA.js
+node 18_Async_Await/150.js
+node 18_Async_Await/151_Seq_Eexecution.js
+node 18_Async_Await/152_Parall_Execution.js
+node 18_Async_Await/153_API_Flaky.js
+node 18_Async_Await/154_IQ.js
+```
+
+`149_Example.spec.ts` requires a project with `@playwright/test` and its browser installed. From that configured environment, run:
+
+```bash
+npx playwright test 18_Async_Await/149_Example.spec.ts
+```
+
 ```mermaid
 flowchart TD
     A[async function] --> B["await openBrowser()"]
@@ -2617,6 +2821,844 @@ flowchart TD
     C --> D["await enterCredentials()"]
     D --> E["await clickLogin()"]
     E --> F[Return promise]
+```
+
+---
+
+### 19 — Export / Import (ES Modules)
+
+**Concept:** ES modules let you split code across files. `export` makes a variable, function, or class available to other files; `import` brings it in. There are two export styles: **named exports** (export specific things by name) and **default exports** (export one main thing per file).
+
+**Why:** Real test projects are never one file. Page objects, utilities, config, and loggers each live in their own file and are wired together with imports — this is how Playwright fixtures and helpers connect.
+
+**Q&A — why use this?**
+- **Q: Named vs default export?** A: Named exports let you export many things from one file (`export let BASE_URL`, `export function formatName`). A default export is the file's single main export (`export default function log`). You can mix both in one file.
+- **Q: How do I import a named export?** A: Use curly braces with the exact name: `import { BASE_URL, formatTestName } from './utils.js'`. Rename with `as`: `import { BASE_URL as url } from './utils.js'`.
+- **Q: How do I import a default export?** A: No curly braces, and you pick any name: `import log from './logs/logger.js'`.
+- **Q: What's the gotcha?** A: Named imports must match the exported name exactly (case-sensitive). A variable that is never exported is private to its file — `let fname = "Pramod"` in `testutil.js` is invisible to importers.
+
+```mermaid
+flowchart TD
+    U["utils.js"] -->|"export let BASE_URL<br/>export function formatTestName"| N["Named exports"]
+    T["testutil.js"] -->|"export let BASE_URL<br/>export function formatUpperCaseString"| N
+    L["logs/logger.js"] -->|"export default function log<br/>export function logBetter"| D["Default + named"]
+    N --> I1["import { BASE_URL, formatTestName } from './utils.js'"]
+    N --> I2["import { BASE_URL as alias } from './testutil.js'"]
+    D --> I3["import log from './logs/logger.js'"]
+    D --> I4["import { logBetter } from './logs/logger.js'"]
+```
+
+```js
+// utils.js — named exports
+export let BASE_URL = "https://api.example.com";
+
+export function formatTestName(name) {
+    return "TC_" + name.toUpperCase();
+}
+
+// testutil.js — named exports (different module, same export name BASE_URL)
+export let BASE_URL = "https://app.vwo.com";
+
+export function formatUpperCaseString(sname) {
+    return sname.toUpperCase();
+}
+
+// logs/logger.js — default export + named export
+export default function log(message) {
+    console.log("[LOG] " + message);
+}
+
+export function logBetter(message) {
+    console.log("[LOGS] " + message);
+}
+```
+
+```js
+// 155.js — importing named exports
+import { BASE_URL, formatUpperCaseString } from './testutil.js';
+console.log(BASE_URL);                              // "https://app.vwo.com"
+console.log(formatUpperCaseString("Pramod"));       // "PRAMOD"
+
+// 156_test.js — importing from two modules, renaming with `as`
+import { BASE_URL as bul_util, formatTestName } from "./utils.js";
+import { BASE_URL as bul_testtul, formatUpperCaseString } from "./testutil.js";
+console.log(bul_util);                              // "https://api.example.com"
+console.log(bul_testtul);                           // "https://app.vwo.com"
+console.log(formatTestName("login"));               // "TC_LOGIN"
+
+// 157.js — default import (no braces, any name)
+import log from './logs/logger.js';
+log('Starting');                                    // "[LOG] Starting"
+```
+
+| Export style | Syntax | Import syntax |
+|-------------|--------|---------------|
+| Named | `export let X` / `export function f()` | `import { X, f } from './file.js'` |
+| Default | `export default function f()` | `import f from './file.js'` (any name) |
+| Rename on import | — | `import { X as alias } from './file.js'` |
+
+Run the lessons with Node.js. The chapter's local `package.json` sets `"type": "module"`, so Node loads these `.js` files as ES modules without extra flags:
+
+```bash
+node 19_Export_Import/155.js
+node 19_Export_Import/156_test.js
+node 19_Export_Import/157.js
+```
+
+---
+
+### 20 — Classes & OOP
+
+**Concept:** A `class` is a blueprint for creating objects with shared structure. It bundles **attributes** (data, declared as fields) and **behaviour** (functions, called methods). The `new` keyword creates an **instance** (object) from the class, and the variable holds a **reference** to that object — not the object itself.
+
+**Why:** Classes are how Playwright's Page Object Model is built. Every page class (`class LoginPage`) has locators (attributes) and actions like `login()` (methods). Understanding `new`, references, and private fields (`#`) is the foundation for writing maintainable test frameworks.
+
+**Q&A — why use this?**
+- **Q: What does `new Person()` do?** A: It allocates a new object in memory, runs the class constructor, and returns a reference to that object. Without `new`, `Person()` throws a `TypeError`.
+- **Q: What is a private field (`#name`)?** A: A field prefixed with `#` is truly private — it cannot be read or written from outside the class, not even by subclasses. This is the JS-native way to hide internal state.
+- **Q: What's the difference between `pramod` and `amit`?** A: Both are references to **different** `Person` objects. `pramod === amit` is `false` because `new` creates a distinct object each time — same blueprint, separate instances.
+- **Q: What's the gotcha?** A: A class is not hoisted like a function declaration. You must define the class before you `new` it. Also, forgetting `new` throws `TypeError: Class constructor Person cannot be invoked without 'new'`.
+
+```mermaid
+flowchart TD
+    C["class Person { } — the blueprint"] --> N1["new Person() — creates object 1"]
+    C --> N2["new Person() — creates object 2"]
+    N1 --> R1["pramod = reference → object 1"]
+    N2 --> R2["amit = reference → object 2"]
+    R1 -->|"pramod === amit"| F["false — different objects"]
+```
+
+```js
+class Person {
+    // Attributes (private fields — only accessible inside the class)
+    #name;
+    #age;
+
+    // Behaviour (methods)
+    eat() {}
+    sleep() {}
+}
+
+// Create instances — each `new` produces a separate object
+const pramod = new Person(); // pramod is a reference to a new Person object
+const amit = new Person();   // amit is a reference to a different Person object
+
+// pramod === amit  →  false  (different objects, same blueprint)
+```
+
+| Term | Means |
+|------|-------|
+| `class` | Blueprint — defines what every instance will have |
+| `new` | Creates a fresh object from the class |
+| Instance | The actual object created by `new` |
+| Reference | The variable holding the object's address |
+| `#field` | Private — inaccessible from outside the class |
+| Method | A function defined inside a class |
+
+Run the lesson:
+
+```bash
+node 20_Class_Object_OOPs/01_Class_Object/158.js
+```
+
+---
+
+### 21 — OOP Encapsulation
+
+**Concept:** Encapsulation keeps an object's internal state private and exposes controlled methods for reading or changing it. JavaScript private fields use the `#` prefix, while getter and setter methods define the permitted access.
+
+**Why:** Test frameworks often need to protect credentials, execution status, counters, and configuration from accidental direct changes. Encapsulation keeps those rules inside the class that owns the data.
+
+The lessons demonstrate private instance fields, private static fields, getter/setter methods, and validation before a private value is changed.
+
+```bash
+node 21_OOPs_Ecapsulation/169.js
+node 21_OOPs_Ecapsulation/172_IQ.js
+```
+
+---
+
+### 22 — OOP Inheritance
+
+**Concept:** Inheritance lets a child class reuse fields and methods from a parent class with `extends`. `super()` initializes the parent portion of the object, `super.method()` calls a parent implementation. The chapter is now split into the four classic inheritance shapes, one folder each.
+
+**Why:** Playwright page objects and test classes share setup, teardown, navigation, and verification. A base class owns that behaviour once, and every page or test type inherits it instead of copy-pasting it.
+
+**Q&A — why use this?**
+- **Q: When do I reach for `extends`?** A: When two or more classes share the same setup/teardown or navigation logic. Put the shared part in a `BasePage`/`BaseTest` and let children inherit it.
+- **Q: What does it replace?** A: Duplicated helper functions and copy-pasted `beforeEach` blocks scattered across spec files.
+- **Q: What's the gotcha?** A: If a child declares a `constructor`, you **must** call `super(...)` before touching `this`, otherwise you get `ReferenceError: Must call super constructor`.
+
+```mermaid
+flowchart TD
+    A["22 — Inheritance"] --> S["01 Single<br/>Father → Son"]
+    A --> M["02 Multiple<br/>❌ not supported → Mixins"]
+    A --> L["03 Multi-Level<br/>Grandfather → Father → Son"]
+    A --> H["04 Hierarchical<br/>one Father → many Sons"]
+```
+
+| Type | Shape | Supported in JS? | Folder |
+|------|-------|:----------------:|--------|
+| Single | `Son extends Father` | ✅ | `01_Single_Inheritance/` |
+| Multiple | `Son extends F1, F2` | ❌ — use mixins | `02_Multiple_Inheritance/` |
+| Multi-Level | `A → B → C` | ✅ | `03_Multi_Level_Inheritance/` |
+| Hierarchical | one parent, many children | ✅ | `04_Hierarchial_Inheritance/` |
+
+---
+
+#### 22.1 — Single Inheritance
+
+**Concept:** One child class extends exactly one parent class, inheriting all its public fields and methods.
+
+**Why:** This is the everyday shape of a test framework — every page object extends one `BasePage`.
+
+**Q&A — why use this?**
+- **Q: When do I reach for it?** A: The moment a second class needs the same `open()` / `waitForLoad()` behaviour you already wrote once.
+- **Q: What does it replace?** A: A utility module of loose functions that every class has to import and re-wire manually.
+- **Q: What's the gotcha?** A: Inherited methods still run with the **child's** `this`, so a parent method can read fields the parent never declared.
+
+```mermaid
+flowchart TD
+    F["class Father"] --> S["class Son extends Father"]
+    S -->|"super()"| F
+```
+
+```js
+class BasePage {
+    constructor(name) { this.name = name; }
+    open() { console.log("[OPEN] " + this.name); }
+}
+
+class LoginPage extends BasePage {
+    login(user) { console.log("[LOGIN] " + user); }
+}
+
+const page = new LoginPage("Login Page");
+page.open();          // inherited from BasePage
+page.login("pramod"); // defined on LoginPage
+```
+
+```bash
+node 22_OOPs_Inheritance/01_Single_Inheritance/176_SI.js
+```
+
+---
+
+#### 22.2 — Multiple Inheritance & Mixins
+
+**Concept:** JavaScript has **no** multiple inheritance — `class Son extends F1, F2` is a syntax error. The workaround is a **mixin**: a function that takes a base class and returns a new class extending it, so you can compose several of them.
+
+**Why:** A test class often needs several independent abilities (logging, screenshots, retries) that do not belong on one shared parent.
+
+**Q&A — why use this?**
+- **Q: When do I reach for a mixin?** A: When abilities are orthogonal — a `SmartTest` needs both logging and screenshots, but neither is "the" parent.
+- **Q: What does it replace?** A: A bloated god-class base that every test inherits just to reach one helper.
+- **Q: What's the gotcha?** A: Order matters. `ScreenshotMixin(LoggerMixin(TestCase))` builds the chain inside-out, and a later mixin can shadow an earlier one's method of the same name.
+
+```mermaid
+flowchart LR
+    T["TestCase"] --> LM["LoggerMixin&#40;TestCase&#41;"]
+    LM --> SM["ScreenshotMixin&#40;...&#41;"]
+    SM --> ST["class SmartTest"]
+    ST --> R["run&#40;&#41; + log&#40;&#41; + takeScreenshot&#40;&#41;"]
+```
+
+```js
+const LoggerMixin = (Base) => class extends Base {
+    log(msg) { console.log("[Log] " + msg); }
+};
+
+const ScreenshotMixin = (Base) => class extends Base {
+    takeScreenshot() { console.log("[SCREENSHOT] captured"); }
+};
+
+class TestCase {
+    constructor(name) { this.name = name; }
+    run() { console.log("Running: " + this.name); }
+}
+
+class SmartTest extends ScreenshotMixin(LoggerMixin(TestCase)) {}
+
+const t = new SmartTest("Login Flow");
+t.run();              // Running: Login Flow
+t.log("Test started");// [Log] Test started
+t.takeScreenshot();   // [SCREENSHOT] captured
+```
+
+```bash
+node 22_OOPs_Inheritance/02_Multiple_Inheritance/179.js
+```
+
+> `02_Multiple_Inheritance/178.js` is intentionally broken — it shows the `extends F1, F2` syntax error you are meant to see once.
+
+---
+
+#### 22.3 — Multi-Level Inheritance
+
+**Concept:** A chain of three or more classes, where each level extends the one above it: `BasePage → AuthPage → AdminPage`.
+
+**Why:** Real apps have layered pages — every page can open, only logged-in pages can `login()`, only admin pages can `manageUsers()`.
+
+**Q&A — why use this?**
+- **Q: When do I reach for it?** A: When a subset of your pages shares extra behaviour that the very top base class should not know about.
+- **Q: What does it replace?** A: Duplicating auth helpers into every authenticated page object.
+- **Q: What's the gotcha?** A: Deep chains get fragile. Three levels is usually the practical limit — past that, prefer composition or mixins.
+
+```mermaid
+flowchart TD
+    B["BasePage — open&#40;&#41;"] --> A["AuthPage — login&#40;&#41;"]
+    A --> AD["AdminPage — manageUsers&#40;&#41;"]
+    AD -->|"inherits both"| ALL["open&#40;&#41; + login&#40;&#41; + manageUsers&#40;&#41;"]
+```
+
+```js
+class BasePage {
+    constructor(name) { this.name = name; }
+    open() { console.log("[OPEN] " + this.name); }
+}
+
+class AuthPage extends BasePage {
+    login(user) { console.log("[LOGIN] " + user); }
+}
+
+class AdminPage extends AuthPage {
+    constructor() { super("Admin Panel"); }   // walks the chain up to BasePage
+    manageUsers() { console.log("[ADMIN] Managing users"); }
+}
+
+const admin = new AdminPage();
+admin.open();               // from BasePage
+admin.login("superadmin");  // from AuthPage
+admin.manageUsers();        // from AdminPage
+```
+
+```bash
+node 22_OOPs_Inheritance/03_Multi_Level_Inheritance/180.js
+```
+
+---
+
+#### 22.4 — Hierarchical Inheritance
+
+**Concept:** One parent class, many sibling children. `Son1`, `Son2`, and `Son3` all extend the same `Father` but never each other.
+
+**Why:** This is what a page-object suite actually looks like: one `BasePage`, and `LoginPage` / `CartPage` / `CheckoutPage` all branching off it.
+
+**Q&A — why use this?**
+- **Q: When do I reach for it?** A: Whenever several unrelated pages or test types need the same bootstrapping.
+- **Q: What does it replace?** A: The same constructor and `open()` written N times across N page objects.
+- **Q: What's the gotcha?** A: Siblings are isolated — a change in `Son1` is invisible to `Son2`. Shared behaviour has to move **up** into `Father`, not sideways.
+
+```mermaid
+flowchart TD
+    F["class Father"] --> S1["class Son1 extends Father"]
+    F --> S2["class Son2 extends Father"]
+    F --> S3["class Son3 extends Father"]
+```
+
+```js
+class Father {
+    open() { console.log("[OPEN] base ready"); }
+}
+
+class Son1 extends Father {}
+class Son2 extends Father {}
+class Son3 extends Father {}
+
+[new Son1(), new Son2(), new Son3()].forEach(child => child.open());
+```
+
+```bash
+node 22_OOPs_Inheritance/04_Hierarchial_Inheritance/181.js
+```
+
+---
+
+### 23 — OOP Polymorphism
+
+**Concept:** Polymorphism means "many forms" — the same method name behaves differently depending on the class of the object calling it. **Method overriding** is the core mechanism: a child redefines a method that already exists on the parent, and JavaScript resolves it at runtime from the actual object, not the variable type.
+
+**Why:** A test runner can loop over a mixed array of `UITest`, `APITest`, and `DBTest` objects and call `setup()` on each one, without a single `if`/`switch` on the test type. Each class supplies its own setup.
+
+**Q&A — why use this?**
+- **Q: When do I reach for it?** A: When several classes share an interface (`setup`, `run`, `teardown`) but each needs its own implementation.
+- **Q: What does it replace?** A: A long `switch (testType)` block that has to be edited every time a new test type is added.
+- **Q: What's the gotcha?** A: JavaScript has **no method overloading** — declaring `setup()` twice in the same class does not create two signatures, the second silently wins. Only overriding across parent/child is real polymorphism here.
+
+```mermaid
+flowchart TD
+    B["BaseTest.setup&#40;&#41; — 'Base: open browser'"] --> A["APIPage extends BaseTest"]
+    A --> O["APIPage.setup&#40;&#41; overrides it"]
+    C["test.setup&#40;&#41;"] --> R{"which object?"}
+    R -->|"new APIPage&#40;&#41;"| O
+    R -->|"new BaseTest&#40;&#41;"| B
+```
+
+```js
+class BaseTest {
+    setup() { console.log("Base: open browser"); }
+}
+
+class APIPage extends BaseTest {
+    setup() { console.log("APITest: open browser"); } // overrides the parent
+}
+
+const btest = new BaseTest();
+const test = new APIPage();
+
+test.setup();  // APITest: open browser  ← child wins
+btest.setup(); // Base: open browser
+```
+
+| Term | Means | In JS? |
+|------|-------|:------:|
+| Overriding | Child redefines a parent method | ✅ |
+| Overloading | Same name, different parameter lists | ❌ — use default/rest params |
+| `super.method()` | Call the parent version from the child | ✅ |
+| Runtime dispatch | The **object**, not the variable, picks the method | ✅ |
+
+```bash
+node 23_OOPs_Polymorphism/182_Method_Overriding.js
+```
+
+---
+
+### 24 — OOP Interview Practice
+
+**Concept:** A drill folder of short, self-contained OOP problems (`EX1`–`EX5`) plus the first TypeScript-flavoured interview questions (`195_IQ.ts`, `196.ts`). Each file is one predict-the-output exercise: constructors, default parameters, method chaining with `return this`, and a three-level `super` chain.
+
+**Why:** Interviews test OOP through tiny traps, not big frameworks. These are the exact shapes that come up — "what does `new C().who()` print?" — and running them after predicting the answer is the fastest way to close the gap.
+
+**Q&A — why use this?**
+- **Q: What does `return this` buy me?** A: Method chaining. `new Counter().increment().increment().display()` works only because every method hands the same object back.
+- **Q: How do default parameters work in a constructor?** A: `constructor(name = "staging", port = 3000)` — `new Environment()` uses both defaults, `new Environment("production", 8080)` overrides both.
+- **Q: What does `super.who()` resolve to in a three-level chain?** A: The **immediate** parent's version, which itself may call `super`. `C → B → A` prints `C>B>A`.
+
+```mermaid
+flowchart LR
+    C["new C&#40;&#41;.who&#40;&#41;"] --> B["super.who&#40;&#41; → B"]
+    B --> A["super.who&#40;&#41; → A"]
+    A --> OUT["'C>B>A'"]
+```
+
+```js
+class A { who() { return "A"; } }
+class B extends A { who() { return "B>" + super.who(); } }
+class C extends B { who() { return "C>" + super.who(); } }
+
+console.log(new C().who()); // C>B>A
+
+class Counter {
+    constructor() { this.count = 0; }
+    increment() { this.count++; return this; }  // return this → chainable
+    display() { console.log("Count:", this.count); return this; }
+}
+new Counter().increment().increment().increment().display(); // Count: 3
+```
+
+| File | Drills |
+|------|--------|
+| [`EX1.js`](24_OOPs_Interview/EX1.js) | Constructor + method — a `Bug` with title and severity |
+| [`EX2.js`](24_OOPs_Interview/EX2.js) | Default parameters — `Environment` staging vs production URLs |
+| [`EX3.js`](24_OOPs_Interview/EX3.js) | Two instances, separate state |
+| [`EX4.js`](24_OOPs_Interview/EX4.js) | `return this` → method chaining |
+| [`EX5.js`](24_OOPs_Interview/EX5.js) | Three-level `super` chain → `C>B>A` |
+| [`195_IQ.ts`](24_OOPs_Interview/195_IQ.ts) | Typed helpers: `string`, `boolean`, `void` return types |
+| [`196.ts`](24_OOPs_Interview/196.ts) | `number[]` param + typed `filter` callback |
+
+```bash
+node 24_OOPs_Interview/EX5.js
+npx tsx 24_OOPs_Interview/196.ts
+```
+
+---
+
+### 25 — TypeScript
+
+**Concept:** TypeScript is JavaScript plus a static type layer — *TS = JS + rules*. You annotate variables, parameters, and return values (`let name: string`, `function add(a: number, b: number): number`), the compiler checks them, then erases every type and emits plain JavaScript. Nothing about the runtime changes.
+
+**Why:** Playwright's own API is written in TypeScript. Typed page objects catch a wrong locator argument or a misspelled method at edit time, in the editor, instead of five minutes into a CI run.
+
+**Q&A — why use this?**
+- **Q: When do I reach for `unknown` instead of `any`?** A: Always, when the shape is genuinely unknown. `any` disables checking entirely, `unknown` forces a `typeof` narrow before you can use the value — the safety `any` throws away.
+- **Q: What does `void` vs `never` mean on a return type?** A: `void` — the function returns nothing but does finish. `never` — it never returns at all, because it throws or loops forever.
+- **Q: What's the gotcha?** A: Types vanish at runtime. `let age: number` will not stop a JSON response from putting a string there, so API payloads still need runtime validation.
+
+```mermaid
+flowchart LR
+    TS["184.ts — typed source"] -->|"tsc"| CHECK{"type check"}
+    CHECK -->|"error"| FIX["fix before running"]
+    CHECK -->|"ok"| JS["184.js — plain JS, types erased"]
+    JS --> NODE["node runs it"]
+```
+
+```ts
+// Annotations: variable, parameters, return type
+let testName1: string = "Login test";
+function add_ts(a: number, b: number): number {
+    return a + b;
+}
+
+// unknown is safer than any — must narrow before use
+let payload: unknown = "hello";
+if (typeof payload === "string") console.log(payload.toUpperCase());
+
+// void returns nothing, never returns at all
+function logTestStep(step: string): void { console.log("[STEP] " + step); }
+function throwError(message: string): never { throw new Error(message); }
+
+// Typed arrays + typed callback — filter failed HTTP codes
+const responseCode: number[] = [200, 201, 404, 500, 302, 403];
+const failed: number[] = responseCode.filter((code: number): boolean => code >= 400);
+console.log("Failed Codes", failed); // [ 404, 500, 403 ]
+```
+
+| Annotation | Example | Note |
+|------------|---------|------|
+| `string` / `number` / `boolean` | `let age: number = 30` | No separate `int` / `float` — all numbers are `number` |
+| `null` / `undefined` | `let nothing: null = null` | Distinct types under `strict` |
+| Array | `number[]` or `Array<string>` | Two spellings, same meaning |
+| `any` | `let x: any` | Escape hatch — avoid |
+| `unknown` | `let x: unknown` | Safe `any`, requires narrowing |
+| Object | `{ name: string; age: number }` | Inline shape |
+| `void` | `function f(): void` | Returns nothing |
+| `never` | `function f(): never` | Throws or loops forever |
+
+Compare `183.js` (untyped) with `184.ts` (typed) and `184.js` (the compiled output) to see exactly what the compiler strips. [`tsconfig.json`](tsconfig.json) at the repo root turns on `strict`, `noUncheckedIndexedAccess`, and `exactOptionalPropertyTypes`.
+
+```bash
+npx tsc 25_Typescript/184.ts     # compile → 184.js
+npx tsx 25_Typescript/186.ts     # or run a .ts file directly
+```
+
+---
+
+### 26 — TypeScript Abstractions
+
+**Concept:** An `interface` is a compile-time contract — a named shape that objects and classes must satisfy. It lists required fields, optional fields (`timeout?`), `readonly` fields, methods, and even call signatures. Interfaces can `extend` each other, and a `class` can `implements` one. Like every TypeScript type, the interface is erased at runtime.
+
+**Why:** Playwright page objects, API responses, and test config are all "objects with a known shape." An interface names that shape once (`BasePage`, `APIResponse`, `TestConfig`) so every login page, every HTTP payload, and every CI config is checked against the same contract — before the test runs.
+
+**Q&A — why use this?**
+- **Q: When do I reach for an `interface` instead of an inline `{ name: string }`?** A: The moment a second object needs the same shape. Name it once (`interface User`) and reuse it — that is what `197_Interface.ts` does with `user1` / `user2` / `user3`.
+- **Q: What does `extends` vs `implements` mean here?** A: `interface LoginPage extends BasePage` inherits fields from another interface. `class TestCase implements Executable` is a class promising to supply every field and method the interface listed.
+- **Q: What's the gotcha?** A: Optional (`headers?`) means the property may be missing, not that it can be the wrong type. `readonly x` blocks reassignment after creation (`point.x = 5` is a compile error). And a callable interface like `TestHook` types a *function*, not an object — `beforeEachHook("Login Test")` is a call, not a property access.
+
+```mermaid
+flowchart TD
+    I["interface User"] --> U1["user1: User"]
+    I --> U2["user2: User"]
+    I --> U3["user3: User"]
+    BP["interface BasePage"] --> LP["LoginPage extends BasePage"]
+    BP --> FT["FreeTrailPage extends BasePage"]
+    E["interface Executable"] --> TC["class TestCase implements Executable"]
+```
+
+```ts
+interface User {
+    name: string;
+    age: number;
+    email: string;
+}
+const user1: User = { name: "John", age: 30, email: "abc@gmail.com" };
+
+interface BasePage { url: string; title: string; }
+interface LoginPage extends BasePage {
+    usernameSelector: string;
+    passwordSelector: string;
+    loginButtonSelector: string;
+}
+
+interface APIResponse {
+    statuscode: number;
+    body: string;
+    headers?: object;          // optional — may be omitted
+    responseTime: number;
+}
+
+interface Executable {
+    name: string;
+    run(): void;
+    getStatus(): string;
+}
+class TestCase implements Executable {
+    name: string;
+    constructor(name: string) { this.name = name; }
+    run(): void { console.log("[RUN] " + this.name); }
+    getStatus(): string { return "PASS"; }
+}
+```
+
+| File | Drills |
+|------|--------|
+| [`197_Interface.ts`](26_OOPs_TS_Abstractions/Interface/197_Interface.ts) | Reusable `User` shape — three objects, one contract |
+| [`198_Readyonly.ts`](26_OOPs_TS_Abstractions/Interface/198_Readyonly.ts) | `readonly x` / `readonly y` — assignment after create is a compile error |
+| [`199_Interface_PageObject.ts`](26_OOPs_TS_Abstractions/Interface/199_Interface_PageObject.ts) | `LoginPage` / `FreeTrailPage` extend `BasePage` |
+| [`200_API_Response.ts`](26_OOPs_TS_Abstractions/Interface/200_API_Response.ts) | Optional `headers?` on an API response |
+| [`201_Method_In.ts`](26_OOPs_TS_Abstractions/Interface/201_Method_In.ts) | Methods on an interface — `add` / `subtract` |
+| [`202_Interface_Hook.ts`](26_OOPs_TS_Abstractions/202_Interface_Hook.ts) | Callable interface — `beforeEach` / `afterEach` hooks |
+| [`203_REAL_Config.ts`](26_OOPs_TS_Abstractions/203_REAL_Config.ts) | Local vs CI `TestConfig` with optional `timeout` / `retries` |
+| [`204_Class_Interface.ts`](26_OOPs_TS_Abstractions/204_Class_Interface.ts) | `class TestCase implements Executable` |
+| [`205_Interface_Misc.ts`](26_OOPs_TS_Abstractions/205_Interface_Misc.ts) | Index signature — `[key: string]: string` |
+| [`206.js`](26_OOPs_TS_Abstractions/206.js) | Parameterized constructor recap (`Car`) |
+
+```bash
+npx tsx 26_OOPs_TS_Abstractions/Interface/199_Interface_PageObject.ts
+npx tsx 26_OOPs_TS_Abstractions/203_REAL_Config.ts
+npx tsx 26_OOPs_TS_Abstractions/202_Interface_Hook.ts
+node 26_OOPs_TS_Abstractions/206.js
+```
+
+---
+
+### 27 — TypeScript Enums
+
+**Concept:** An `enum` is a named set of allowed constants. A string enum (`enum TestStatus { Pass = "PASS" }`) gives every member a readable value, and the enum name itself becomes a **type**, so `browser: Browser` will only accept one of the four members.
+
+**Why:** Test code is full of fixed vocabularies (status, severity, environment, browser, HTTP method) that usually get typed as bare strings. One typo (`"chrom"`) then fails silently at runtime. An enum turns that typo into a compile error.
+
+**Q&A — why use this?**
+- **Q: When do I reach for it?** A: Whenever a value comes from a closed list you control: `PASS / FAIL / SKIP`, `dev / staging / qa / prod`, `GET / POST / PUT / DELETE`.
+- **Q: What does it replace?** A: Scattered magic strings and a `const STATUS = { ... }` object that gives you no type safety on the consuming side.
+- **Q: What's the gotcha?** A: Prefer **string** enums over numeric ones. A numeric enum auto-assigns `0, 1, 2`, so a failed status logs as `1` instead of `"FAIL"`, and reordering the members silently changes every stored value.
+
+```mermaid
+flowchart TD
+    E["enum Browser"] --> C["Chrome = 'chrome'"]
+    E --> F["Firefox = 'firefox'"]
+    E --> S["Safari = 'safari'"]
+    E --> D["Edge = 'edge'"]
+    C --> SW["switch &#40;browser&#41;"]
+    F --> SW
+    S --> SW
+    D --> SW
+    SW --> L["launch the matching engine"]
+    X["launchBrowser&#40;'chrom'&#41;"] -.->|"compile error"| SW
+```
+
+```ts
+enum Browser {
+    Chrome = "chrome",
+    Firefox = "firefox",
+    Safari = "safari",
+    Edge = "edge"
+}
+
+function launchBrowser(browser: Browser): void {
+    switch (browser) {
+        case Browser.Chrome:  console.log("Launching Chromium (Chrome v120)"); break;
+        case Browser.Firefox: console.log("Launching Gecko (Firefox v115)");   break;
+        case Browser.Safari:  console.log("Launching WebKit (Safari v17)");    break;
+        case Browser.Edge:    console.log("Launching Chromium (Edge v120)");   break;
+    }
+}
+
+launchBrowser(Browser.Chrome); // Launching Chromium (Chrome v120)
+// launchBrowser("chrom");     // compile error, not a Browser member
+```
+
+| File | Drills |
+|------|--------|
+| [`205_ENUM.ts`](27_Typescript_ENUM/205_ENUM.ts) | `TestStatus`: Pass / Fail / Skip / Pending / Blocked |
+| [`206_ENUM.ts`](27_Typescript_ENUM/206_ENUM.ts) | `SeverityLevels`: low through blocking |
+| [`207_REAL_Enum.ts`](27_Typescript_ENUM/207_REAL_Enum.ts) | `Environment`: one enum member per base URL |
+| [`208_REAL_Browser_PW.ts`](27_Typescript_ENUM/208_REAL_Browser_PW.ts) | Enum as a function parameter type, driving a `switch` |
+| [`209_API_REAL.ts`](27_Typescript_ENUM/209_API_REAL.ts) | `HTTPMethod` passed into a `sendRequest` helper |
+
+```bash
+npx tsx 27_Typescript_ENUM/208_REAL_Browser_PW.ts
+npx tsx 27_Typescript_ENUM/209_API_REAL.ts
+```
+
+---
+
+### 28 — TypeScript Generics
+
+**Concept:** A generic is a **type parameter**: `function getFirstResult<T>(result: T[]): T`. The caller supplies the real type at the call site (`getFirstResult<number>([200, 400])`), and TypeScript propagates it through the parameters and the return type. One implementation, many types, zero `any`.
+
+**Why:** Test utilities are naturally shape-agnostic: a data store, a "first result" helper, an API response wrapper. Without generics you either write the same function per type or fall back to `any` and throw away every guarantee at the boundary.
+
+**Q&A — why use this?**
+- **Q: When do I reach for it?** A: When a function or class works the same way regardless of the element type, but callers still need the **specific** type back. `getFirstResult<string>(...)` returns a `string`, not `any`.
+- **Q: What does it replace?** A: A pile of near-identical overloads (`getFirstNumber`, `getFirstString`) or a lazy `any[]` signature.
+- **Q: What's the gotcha?** A: With `noUncheckedIndexedAccess` on (see [`tsconfig.json`](tsconfig.json)), `result[0]` is typed `T | undefined` because an empty array is legal. `210_Generic.ts` uses `result[0]!`, the non-null assertion, to silence it. That `!` is a promise to the compiler, not a runtime check, so an empty array still returns `undefined`.
+
+```mermaid
+flowchart LR
+    G["getFirstResult&lt;T&gt;&#40;result: T[]&#41;: T"] --> N["&lt;number&gt; → number"]
+    G --> S["&lt;string&gt; → string"]
+    G --> B["&lt;boolean&gt; → boolean"]
+    N --> R["one implementation, typed return per call"]
+    S --> R
+    B --> R
+```
+
+```ts
+function getFirstResult<T>(result: T[]): T {
+    return result[0]!;                       // ! = non-null assertion
+}
+
+const firstNumber = getFirstResult<number>([200, 400, 500]);   // number
+const firstString = getFirstResult<string>(["Login", "Cart"]); // string
+
+class TestDataStorage<T> {
+    private items: T[] = [];
+    add(item: T): void { this.items.push(item); }
+    getFirst(): T { return this.items[0]!; }
+    getAll(): T[] { return this.items; }
+    count(): number { return this.items.length; }
+}
+
+const codes = new TestDataStorage<number>();
+codes.add(200); codes.add(404); codes.add(500);
+console.log(codes.getAll());   // [ 200, 404, 500 ]
+console.log(codes.count());    // 3
+// codes.add("500");           // compile error, expects a number
+```
+
+| File | Drills |
+|------|--------|
+| [`210_Generic.ts`](28_Typescript_Generic/210_Generic.ts) | Generic function `<T>` over `number[]`, `string[]`, `boolean[]` |
+| [`211_Generic_Class.ts`](28_Typescript_Generic/211_Generic_Class.ts) | Generic class `TestDataStorage<T>` with a private `T[]` |
+| [`212_API_Response.ts`](28_Typescript_Generic/212_API_Response.ts) | Generic return shape `{ statusCode: number; data: T }` |
+
+```bash
+npx tsx 28_Typescript_Generic/210_Generic.ts
+npx tsx 28_Typescript_Generic/211_Generic_Class.ts
+```
+
+---
+
+### 29 — TypeScript Access Modifiers
+
+**Concept:** TypeScript adds three visibility keywords to class members plus a `readonly` flag. `public` is reachable everywhere, `private` only inside the declaring class, `protected` inside the class **and** its subclasses, and `readonly` allows assignment in the constructor but blocks every write after that.
+
+**Why:** A page object should expose `login()` but never let a test reach in and rewrite `baseURL`. An API client should hide its `apiKey` completely while still letting a subclass read `timeout`. These keywords encode that boundary in the type system instead of a naming convention.
+
+**Q&A — why use this?**
+- **Q: When do I pick `protected` over `private`?** A: `protected` when a subclass legitimately needs it. In [`214_PageObjectModel.ts`](29_Typescript_PRIVATE_PUBLIC_PROTECTED/214_PageObjectModel.ts) `LoginPage` calls the inherited `this.navigate()`, which only works because `navigate` is `protected`, not `private`.
+- **Q: What does `readonly` replace?** A: A getter-only wrapper around a config field. `private readonly baseURL` gives immutability without writing an accessor.
+- **Q: What's the gotcha?** A: These are **compile-time** only. Unlike a JS `#field`, `private` is erased at runtime, so the value is still visible in the emitted object and readable from plain JavaScript. Use `#` when you need real runtime privacy.
+
+```mermaid
+flowchart TD
+    subgraph AC["class APIClient"]
+        P["public baseURL"]
+        PR["private apiKey"]
+        PT["protected timeout"]
+    end
+    AC --> SUB["class UserAPIClient extends APIClient"]
+    AC --> OUT["outside code"]
+    SUB -->|"✅ baseURL, timeout"| OK1["visible"]
+    SUB -.->|"❌ apiKey"| NO1["blocked"]
+    OUT -->|"✅ baseURL"| OK2["visible"]
+    OUT -.->|"❌ apiKey, timeout"| NO2["blocked"]
+```
+
+```ts
+class APIClient {
+    public baseURL: string;       // everywhere
+    private apiKey: string;       // this class only
+    protected timeout: number;    // this class + subclasses
+
+    constructor(baseURL: string, apiKey: string, timeout: number) {
+        this.baseURL = baseURL;
+        this.apiKey = apiKey;
+        this.timeout = timeout;
+    }
+
+    private getAuthHeader(): string { return "Bearer " + this.apiKey; }
+
+    public sendRequest(path: string): void {
+        console.log("GET " + this.baseURL + path);
+        console.log("Auth: " + this.getAuthHeader());
+    }
+}
+
+class UserAPIClient extends APIClient {
+    getUsers(): void {
+        console.log("Fetching users (timeout: " + this.timeout + "ms)"); // protected, allowed
+        // console.log(this.apiKey);   // compile error, private to APIClient
+    }
+}
+```
+
+| Modifier | Own class | Subclass | Outside | Reassignable |
+|----------|:---------:|:--------:|:-------:|:------------:|
+| `public` | ✅ | ✅ | ✅ | ✅ |
+| `protected` | ✅ | ✅ | ❌ | ✅ |
+| `private` | ✅ | ❌ | ❌ | ✅ |
+| `readonly` | ✅ | depends on visibility | depends | ❌ after constructor |
+| `#field` (JS) | ✅ | ❌ | ❌ | ✅, and private at runtime |
+
+| File | Drills |
+|------|--------|
+| [`213_PPP.ts`](29_Typescript_PRIVATE_PUBLIC_PROTECTED/213_PPP.ts) | All three modifiers on one `APIClient`, plus a private method |
+| [`214_PageObjectModel.ts`](29_Typescript_PRIVATE_PUBLIC_PROTECTED/214_PageObjectModel.ts) | `protected navigate()` reused by `LoginPage` |
+| [`215_Redaonly.ts`](29_Typescript_PRIVATE_PUBLIC_PROTECTED/215_Redaonly.ts) | `private readonly` Playwright config, frozen after construction |
+
+```bash
+npx tsx 29_Typescript_PRIVATE_PUBLIC_PROTECTED/213_PPP.ts
+npx tsx 29_Typescript_PRIVATE_PUBLIC_PROTECTED/214_PageObjectModel.ts
+npx tsx 29_Typescript_PRIVATE_PUBLIC_PROTECTED/215_Redaonly.ts
+```
+
+---
+
+### 30 — TypeScript Abstract Classes
+
+**Concept:** An `abstract class` is a base that cannot be instantiated. It mixes **abstract members** (a signature with no body, which every subclass must implement) with **concrete members** (real fields and methods the subclass inherits for free). It is the middle ground between an interface and a normal class.
+
+**Why:** Every test type shares the same lifecycle (`setup`, `execute`, `teardown`) but implements it differently. An abstract `BaseTest` forces all three to exist on `UITest`, `APITest`, and `DBTest`, while still holding the shared `testName` field and any shared helper in one place.
+
+**Q&A — why use this?**
+- **Q: When do I pick this over an `interface`?** A: When the base also carries **implementation**, a constructor, shared state, or a default method. An interface is pure contract and disappears at compile time; an abstract class emits a real class you can inherit from.
+- **Q: What does it replace?** A: A "base" class whose methods just `throw new Error("not implemented")` and only blow up at runtime. `abstract` moves that failure to compile time.
+- **Q: What's the gotcha?** A: `new BaseTest("x")` is a compile error, which is the whole point. And **every** abstract member must be implemented, including [`216_Abstract.ts`](30_Typescript_Abstract_Class/216_Abstract.ts)'s deliberately odd `abstract loan()`. Miss one and the subclass will not compile. Note the concrete `loan1()` next to it needs no implementation, since it already has a body.
+
+```mermaid
+flowchart TD
+    B["abstract class BaseTest"] --> AB["abstract setup&#40;&#41; / execute&#40;&#41; / teardown&#40;&#41; / loan&#40;&#41;"]
+    B --> CO["concrete: testName field + loan1&#40;&#41;"]
+    AB -->|"must implement all four"| U["class UITest extends BaseTest"]
+    CO -->|"inherited as-is"| U
+    B -.->|"new BaseTest&#40;&#41; ❌ compile error"| X["cannot instantiate"]
+```
+
+```ts
+abstract class BaseTest {
+    protected testName: string;
+    constructor(testName: string) { this.testName = testName; }
+
+    abstract setup(): void;      // no body, subclass must supply one
+    abstract execute(): void;
+    abstract teardown(): void;
+
+    loan1(): void { console.log("Hi"); }   // concrete, inherited as-is
+}
+
+class UITest extends BaseTest {
+    setup(): void    { console.log("  Setup: launch browser"); }
+    execute(): void  { console.log("  Execute: click buttons, fill forms"); }
+    teardown(): void { console.log("  Teardown: close browser"); }
+}
+
+const test = new UITest("Login Flow");
+test.setup(); test.execute(); test.teardown();
+// const base = new BaseTest("x");   // compile error, cannot instantiate an abstract class
+```
+
+> [`216_Abstract.ts`](30_Typescript_Abstract_Class/216_Abstract.ts) defines the classes but never instantiates `UITest`, so running it prints nothing. Add `new UITest("Login Flow").setup()` at the bottom to see it work.
+
+| Compare | Abstract class | Interface |
+|---------|:--------------:|:---------:|
+| Can hold implementation | ✅ | ❌ |
+| Can hold a constructor and state | ✅ | ❌ |
+| Exists at runtime | ✅ | ❌, erased |
+| A class can have many | ❌, one `extends` | ✅, many `implements` |
+
+```bash
+npx tsx 30_Typescript_Abstract_Class/216_Abstract.ts
 ```
 
 ---
@@ -2648,4 +3690,44 @@ Concept explainers, generated on demand via the prompt template in [`IQ_Notes/RE
 
 ---
 
-> **TL;DR:** This repo is a from-scratch JavaScript fundamentals course (`console.log` → scoping → identifiers → literals/numbers → operators → conditionals → switch statements → user input → loops → arrays: create, search, iterate, transform, sort, slice, combine, check, copy, destructure → functions: the four types, expressions, arrows, IIFE, spread/rest, `return`, `var`/`let`/`const`, hoisting, TDZ → scope & closures: scope chain, private state, retry trackers → strings: quotes, template literals, character access, searching, extraction, transformation, splitting, joining, conversion → objects: literals, property access, mutation, nesting, methods, value vs reference) plus a `00_chaptet_GENAI` folder for LLM automation-framework prompting, an `MCQ` self-test bank, and an `IQ_Notes` library of standalone concept references anyone can regenerate with the same prompt template.
+> **TL;DR:** A from-scratch JavaScript-to-TypeScript course for test automation, plus a GenAI prompting folder, an MCQ self-test bank, and an IQ_Notes reference library.
+
+## Progress Tracker
+
+| # | Chapter | Topics | Status |
+|---|---------|--------|:------:|
+| 00 | GenAI / RICE Prompting | Structured LLM prompts for framework generation | ✅ |
+| 01 | Hello World | `console.log`, running files with Node | ✅ |
+| 02 | `let` & Scope | Block scope, hoisting basics | ✅ |
+| 03 | Identifiers & Comments | Naming rules, conventions, JSDoc | ✅ |
+| 04 | Literals & Numbers | All literal types, `null` vs `undefined`, BigInt, NaN | ✅ |
+| 05 | Operators | Assignment, arithmetic, comparison, logical, ternary, `typeof`, `??` | ✅ |
+| 06 | Statements & Conditionals | `if / else if / else`, nesting | ✅ |
+| 07 | Switch Statements | Cases, fall-through, grouped cases, `switch(true)` | ✅ |
+| 08 | User Input | `prompt`, `readline`, `prompt-sync`, stdin | ✅ |
+| 09 | Loops | `for`, `while`, `do...while`, nested loops, `break` | ✅ |
+| 10 | Arrays | Create, access, add/remove, search, iterate, transform, sort, slice, combine, check, copy, destructure | ✅ |
+| 11 | Functions | Four types, expressions, arrows, IIFE, spread/rest, `return`, hoisting, TDZ | ✅ |
+| 12 | Scope & Closures | Scope chain, private state, retry trackers | ✅ |
+| 13 | Strings | Quotes, templates, access, search, extract, split/join, conversion | ✅ |
+| 14 | Objects | Literals, property access, mutation, nesting, methods, value vs reference | ✅ |
+| 15 | Multi-Dimensional Arrays | 2D grids, nested loops, star patterns | ✅ |
+| 16 | Callbacks | Sync vs async callbacks, callback hell | ✅ |
+| 17 | Promises | States, then/catch/finally, chaining, all/allSettled/race | ✅ |
+| 18 | Async / Await | Error handling, sequential vs parallel, retries, microtask order | ✅ |
+| 19 | Export / Import (ES Modules) | Named exports, default exports, alias imports, multi-module wiring | ✅ |
+| 20 | Classes & OOP | `class` syntax, `new` keyword, private fields (`#`), object references | ✅ |
+| 21 | OOP Encapsulation | Private fields, getters/setters, controlled state changes, private static fields | ✅ |
+| 22 | OOP Inheritance | Single, multiple (mixins), multi-level, hierarchical, `extends`, `super` | ✅ |
+| 23 | OOP Polymorphism | Method overriding, runtime dispatch, why JS has no overloading | ✅ |
+| 24 | OOP Interview Practice | Constructors, default params, `return this` chaining, `super` chains | ✅ |
+| 25 | TypeScript | Annotations, primitives, arrays, `any` vs `unknown`, `void` vs `never` | ✅ |
+| 26 | TypeScript Abstractions | Interfaces, `readonly`, optional props, `extends`, `implements`, callable hooks, index signatures | ✅ |
+| 27 | TypeScript Enums | String enums as closed vocabularies, enum-as-type, `switch` dispatch | ✅ |
+| 28 | TypeScript Generics | Type parameters `<T>`, generic classes, generic return shapes, `!` assertion | ✅ |
+| 29 | TypeScript Access Modifiers | `public` / `private` / `protected`, `readonly`, compile-time vs `#` runtime privacy | ✅ |
+| 30 | TypeScript Abstract Classes | `abstract` members, concrete members, abstract class vs interface | ✅ |
+| — | MCQ Practice | Array multiple-choice bank (more coming) | 🚧 |
+| — | IQ_Notes | Standalone concept references via prompt template | 🚧 |
+
+**Suggested next chapters:** Abstract classes · Enums · Playwright fixtures · Page Object Model · API testing with `request`
